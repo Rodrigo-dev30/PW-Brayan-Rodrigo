@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistema Supabase</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Acesso ao Sistema</h2>
+
+        <div class="tabs">
+            <button type="button" id="btn-login-tab" class="active" onclick="switchTab('login')">Login</button>
+            <button type="button" id="btn-register-tab" onclick="switchTab('register')">Registrar</button>
+        </div>
+
+        <!-- Formulário de Login -->
+        <form id="form-login">
+            <input type="email" id="login-email" placeholder="E-mail" required>
+            <input type="password" id="login-password" placeholder="Senha (mín. 6 caracteres)" minlength="6" required>
+            <button type="submit">Entrar</button>
+        </form>
+
+        <!-- Formulário de Cadastro -->
+        <form id="form-register" style="display: none;">
+            <input type="email" id="register-email" placeholder="E-mail" required>
+            <input type="password" id="register-password" placeholder="Crie uma senha (mín. 6 caracteres)" minlength="6" required>
+            <button type="submit">Criar Conta</button>
+        </form>
+
+        <p id="message"></p>
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            const formLogin = document.getElementById('form-login');
+            const formRegister = document.getElementById('form-register');
+            const btnLogin = document.getElementById('btn-login-tab');
+            const btnRegister = document.getElementById('btn-register-tab');
+
+            if (tab === 'login') {
+                formLogin.style.display = 'flex';
+                formRegister.style.display = 'none';
+                btnLogin.classList.add('active');
+                btnRegister.classList.remove('active');
+            } else {
+                formLogin.style.display = 'none';
+                formRegister.style.display = 'flex';
+                btnLogin.classList.remove('active');
+                btnRegister.classList.add('active');
+            }
+            document.getElementById('message').innerText = '';
+        }
+    </script>
+</body>
+</html>
